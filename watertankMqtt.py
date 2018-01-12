@@ -48,18 +48,19 @@ def main(argv):
   watertank.setup()
 
   level = 0.0
-  for i in range(0,10):
+  for i in range(0,20):
     level = level + watertank.measure()
     time.sleep(1)
 
-  level = level / 10.0
+  level = level / 20.0
   print "Level = {} %".format(level)
 
   watertank.clean()
 
   watertank = {}
   watertank["level"] = level
-  if level < 30.0:
+  watertank["level_alert_min"] = 30.0
+  if level < watertank["level_alert_min"]:
     watertank["level_status"] = "level_too_low"
   else:
     watertank["level_status"] = "level_good"
